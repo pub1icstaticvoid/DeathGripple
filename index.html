@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Death Gripple</title>
+    <link rel="icon" type="image/png" href="pics/mc_ride.jpg">
     <link rel="stylesheet" href="styles.css">
 
     <script src="script.js" defer></script>
@@ -39,7 +40,8 @@
             <div class="modal-content">
                 <h2 id="end-message">Congratulations! You guessed the song!</h2>
                 <div id="album-art-container">
-                    <div class="art-placeholder">DG</div>
+                    <div class="art-placeholder" id="fallback-art">DG</div>
+                    <img id="album-art" src="" alt="Album art" class="hidden">
                 </div>
                 <h3 id="correct-song-title"></h3>
                 <p id="correct-album-name"></p>

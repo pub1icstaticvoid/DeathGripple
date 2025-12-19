@@ -199,6 +199,13 @@ function showEndScreen(isWin) {
     const message = isWin ? "Congratulations! You guessed the song!" : "Out of guesses! The correct song was:";
     document.getElementById("end-message").textContent = message;
 
+    const albumArtImage = document.getElementById("album-art");
+    const fallBackArt = document.getElementById("fallback-art");
+
+    albumArtImage.src = `pics/${dailySong.album.replace(/ /g, "_")}.jpg`;
+    albumArtImage.classList.remove("hidden");
+    fallBackArt.classList.add("hidden");
+
     document.getElementById("correct-song-title").textContent = dailySong.title;
     document.getElementById("correct-album-name").textContent = dailySong.album;
     document.getElementById("win-modal").classList.remove("hidden");
