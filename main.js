@@ -3,10 +3,12 @@ import { fetchDiscography } from "./api.js";
 let tracks = {};
 let albumData = {};
 let dailySong = null;
+let guessEmojis = [];
 
 function setDailySong(trackData) {
     const titles = Object.keys(trackData);
     const today = new Date();
+    today.setHours(0, 0, 0, 0);
 
     const dateNum = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
 
@@ -156,11 +158,47 @@ function submitGuess(trackName) {
         </div>
     `;
 
+    const rowEmojis = [
+        isCorrectTitle ? "🟩" : "⬛",
+        albumClass === "correct" ? "🟩" : albumClass === "near" ? "🟨" : "⬛",
+        trackClass === "correct" ? "🟩" : trackClass === "near" ? "🟨" : "⬛"
+    ].join("");
+    guessEmojis.push(rowEmojis);
+
     const header = container.querySelector(".guess-header");
     header.after(row);
     
     searchInput.value = "";
+
+    if (isCorrectTitle) {
+        showWinScreen();
+    }
 }
+
+function showWinScreen() {
+    document.getElementById("correct-song-title").textContent = dailySong.title;
+    document.getElementById("correct-album-name").textContent = dailySong.album;
+    document.getElementById("win-modal").classList.remove("hidden");
+}
+
+document.getElementById("close-modal").onclick = () => {
+    document.getElementById("win-modal").classList.add("hidden");
+}
+
+document.getElementById("share-button").onclick = () => {
+    const startDate = new Date(2025, 11, 18);
+    startDate.setHours(0, 0, 0, 0);
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    
+    const diffTime = Math.abs(today - startDate);
+    const gameNumber = Math.floor(diffTime / 86400000) + 1;
+
+    const text = `Death Gripple #${gameNumber}\n${guessEmojis.join("\n")}`;
+    navigator.clipboard.writeText(text);
+    alert("Results copied to clipboard!");
+};
 
 searchInput.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
