@@ -236,7 +236,7 @@ document.getElementById("close-modal").onclick = () => {
 }
 
 document.getElementById("share-button").onclick = () => {
-    const startDate = new Date(2025, 11, 18);
+    const startDate = new Date(2025, 11, 19);
     startDate.setHours(0, 0, 0, 0);
 
     const today = new Date();
