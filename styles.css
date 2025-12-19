@@ -83,3 +83,53 @@ main {
     background: #fff;
     color: #000;
 }
+/* Guess Rows */
+#guesses-container {
+    margin-top: 30px;
+    width: 100%;
+    max-width: 600px;
+}
+.guess-header, .guess-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+.header-cell {
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+    font-size: 0.7rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #333;
+}
+.cell {
+    flex: 1;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #333;
+    font-size: 0.75rem;
+    text-align: center;
+    padding: 5px;
+    background-color: #000;
+    text-transform: uppercase;
+    overflow: hidden;
+    word-break: break-word;
+}
+.cell.correct {
+    background-color: #6aaa64;
+    border-color: #6aaa64;
+}
+.cell.incorrect {
+    background-color: #3a3a3c;
+    border-color: #3a3a3c;
+}
+.cell.near {
+    background-color: #c9b458;
+    border-color: #c9b458;
+    color: #000;
+}

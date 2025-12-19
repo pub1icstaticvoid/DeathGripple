@@ -1,22 +1,50 @@
 import { fetchDiscography } from "./api.js";
 
 let tracks = {};
+let albumData = {};
+let dailySong = null;
+
+function setDailySong(trackData) {
+    const titles = Object.keys(trackData);
+    const today = new Date();
+
+    const dateNum = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
+
+    const a = 1664525;
+    const c = 1013904223;
+    const m = Math.pow(2, 32);
+
+    const scrambledSeed = (a * dateNum + c) % m;
+    
+    const index = Math.abs(scrambledSeed) % titles.length;
+    const targetTitle = titles[index];
+
+    dailySong = {
+        title: targetTitle,
+        ...trackData[targetTitle]
+    };
+
+    console.log("Daily song selected.");
+}
 
 async function init() {
     const data = await fetchDiscography();
     tracks = data.track;
+    albumData = data.album;
 
     const alphabetizedTrackNames = Object.keys(tracks).sort((a, b) =>
         a.localeCompare(b, undefined, {sensitivity: 'base'})
     );
 
     setupDropDown(alphabetizedTrackNames);
+
+    setDailySong(tracks);
 }
 
 function setupDropDown(trackNames) {
     const dropdown = document.getElementById("track-dropdown");
     dropdown.innerHTML = "";
-    
+
     const fragment = document.createDocumentFragment();
 
     trackNames.forEach(name => {
@@ -85,12 +113,60 @@ searchButton.addEventListener("click", () => {
 
 function submitGuess(trackName) {
     const songInfo = tracks[trackName];
+    const targetInfo = dailySong;
+    const container = document.getElementById("guesses-container");
+
     console.log(`Submitting: ${trackName} from ${songInfo.album}`);
 
-    searchInput.value = "";
+    const guessAlbumNum = parseInt(albumData[songInfo.album]);
+    const targetAlbumNum = parseInt(albumData[targetInfo.album]);
+    const albumDist = Math.abs(guessAlbumNum - targetAlbumNum);
+    let albumClass = "incorrect";
+    if (albumDist === 0) albumClass = "correct";
+    else if (albumDist <= 2) albumClass = "near";
+    let albumHint = "";
+    if (guessAlbumNum < targetAlbumNum) albumHint = " ↑";
+    else if (guessAlbumNum > targetAlbumNum) albumHint = " ↓";
 
-    // Logic to add the guess to a results table goes here
+    const guessNum = parseInt(songInfo.num);
+    const targetNum = parseInt(targetInfo.num);
+    const trackDist = Math.abs(guessNum - targetNum);
+    let trackClass = "incorrect";
+    if (trackDist === 0) trackClass = "correct";
+    else if (trackDist <= 2) trackClass = "near";
+    let trackHint = "";
+    if (guessNum < targetNum) trackHint = " ↓";
+    else if (guessNum > targetNum) trackHint = " ↑";
+
+    const isCorrectAlbum = songInfo.album === targetInfo.album;
+    const isCorrectTitle = trackName === targetInfo.title;
+
+    const row = document.createElement("div");
+    row.className = "guess-row";
+
+    row.innerHTML = `
+        <div class="cell ${isCorrectTitle ? 'correct' : 'incorrect'}">
+            ${trackName}
+        </div>
+        <div class="cell ${albumClass}">
+            ${songInfo.album}${isCorrectAlbum ? '' : albumHint}
+        </div>
+        <div class="cell ${trackClass}">
+            ${guessNum}${guessNum === targetNum ? '' : trackHint}
+        </div>
+    `;
+
+    const header = container.querySelector(".guess-header");
+    header.after(row);
+    
+    searchInput.value = "";
 }
+
+searchInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+       searchButton.click();
+    }
+});
 
 // Starts game
 init();
