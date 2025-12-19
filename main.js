@@ -4,6 +4,9 @@ let tracks = {};
 let albumData = {};
 let dailySong = null;
 let guessEmojis = [];
+let gameOver = false;
+let guessCount = 0;
+const MAX_GUESSES = 6;
 
 function setDailySong(trackData) {
     const titles = Object.keys(trackData);
@@ -55,6 +58,7 @@ function setupDropDown(trackNames) {
         item.textContent = name;
         item.style.display = "none"
         item.addEventListener("click", () => {
+            if (gameOver) return;
             searchInput.value = name;
             hideAllDropdownItems();
         });
@@ -98,6 +102,8 @@ function hideAllDropdownItems() {
 }
 
 searchButton.addEventListener("click", () => {
+    if (gameOver) return;
+
     const currentGuess = searchInput.value.trim();
 
     const actualTrackName = Object.keys(tracks).find(
@@ -114,6 +120,9 @@ searchButton.addEventListener("click", () => {
 });
 
 function submitGuess(trackName) {
+    if (gameOver) return;
+    guessCount++;
+
     const songInfo = tracks[trackName];
     const targetInfo = dailySong;
     const container = document.getElementById("guesses-container");
@@ -171,11 +180,23 @@ function submitGuess(trackName) {
     searchInput.value = "";
 
     if (isCorrectTitle) {
-        showWinScreen();
+        showEndScreen(true);
+    }
+    else if (guessCount >= MAX_GUESSES) {
+        showEndScreen(false);
     }
 }
 
-function showWinScreen() {
+function showEndScreen(isWin) {
+    gameOver = true;
+
+    searchInput.disabled = true;
+    searchButton.disabled = true;
+    searchInput.placeholder = isWin ? "You won!" : "Game over";
+
+    const message = isWin ? "Congratulations! You guessed the song!" : "Out of guesses! The correct song was:";
+    document.getElementById("end-message").textContent = message;
+
     document.getElementById("correct-song-title").textContent = dailySong.title;
     document.getElementById("correct-album-name").textContent = dailySong.album;
     document.getElementById("win-modal").classList.remove("hidden");
@@ -201,6 +222,8 @@ document.getElementById("share-button").onclick = () => {
 };
 
 searchInput.addEventListener("keydown", (e) => {
+    if (gameOver) return;
+
     if (e.key === "Enter") {
        searchButton.click();
     }
