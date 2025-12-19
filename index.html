@@ -11,6 +11,21 @@
 </head>
 
 <body>
+    <button id="help-button">?</button>
+    <div id="instructions-modal" class="modal hidden">
+        <div class="modal-content">
+            <button id="close-x" aria-label="Close instructions">&times;</button>
+            <h2>HOW TO PLAY</h2>
+            <p>Guess the Death Grips song in 6 tries.</p>
+            <ul style="text-align: left; list-style: none; padding: 0;">
+                <li>🟩 <b>Green:</b> Match.</li>
+                <li>🟨 <b>Yellow:</b> Near (within 2 albums or 2 tracks).</li>
+                <li>⬛ <b>Gray:</b> Incorrect.</li>
+                <li>(↑↓) <b>Arrows:</b> Shows if target is earlier or later in the discography.</li>
+            </ul>
+            <button id="close-instructions" class="share-button">GET GET GET GET GOT IT</button>
+        </div>
+    </div>
     <header>
         <h1>Death Gripple</h1>
     </header>

@@ -15,6 +15,35 @@ header {
     border-bottom: 1px solid #333;
     margin-bottom: 20px;
 }
+#help-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    
+    background: #000;
+    color: #fff;
+    border: 2px solid #fff;
+
+    width: 35px;
+    height: 35px;
+    border-radius: 5px;
+
+    cursor: pointer;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 1.2rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 500;
+    transition: all 0.2 ease;
+}
+#help-button:hover {
+    background: #fff;
+    color: #000;
+    transform: scale(1.1);
+}
 main {
     display: flex;
     flex-direction: column;
@@ -48,6 +77,10 @@ main {
     font-weight: bold;
     border: 2px solid #fff;
     cursor: pointer;
+}
+#search-button:hover {
+    background: #000;
+    color: #fff;
 }
 #guess-counter {
     text-align: center;
@@ -153,6 +186,7 @@ main {
     z-index: 1000;
 }
 .modal-content {
+    position: relative;
     background: #111;
     padding: 40px;
     border: 3px solid #6aaa64;
@@ -186,4 +220,22 @@ main {
     margin-top: 20px;
     cursor: pointer;
     font-weight: bold;
+}
+#close-x {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    background: none;
+    border: none;
+    color: #888;
+    
+    font-size: 32px;
+    line-height: 1;
+    cursor: pointer;
+    font-family: inherit;
+    transition: color 0.2 ease;
+}
+#close-x:hover {
+    color: #fff;
 }

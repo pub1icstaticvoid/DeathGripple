@@ -9,6 +9,10 @@ let guessCount = 0;
 const MAX_GUESSES = 6;
 const guessDisplay = document.getElementById("guess-counter");
 
+const instructionsModal = document.getElementById("instructions-modal");
+const helpButton = document.getElementById("help-button");
+const closeInstructions = document.getElementById("close-instructions");
+
 function setDailySong(trackData) {
     const titles = Object.keys(trackData);
     const today = new Date();
@@ -34,6 +38,22 @@ function setDailySong(trackData) {
 }
 
 async function init() {
+    const hasVisited = localStorage.getItem("dg-visited");
+    if (!hasVisited) instructionsModal.classList.remove("hidden");
+
+    document.getElementById("close-x").onclick = () => {
+        instructionsModal.classList.add("hidden");
+    };
+
+    closeInstructions.onclick = () => {
+        instructionsModal.classList.add("hidden");
+        localStorage.setItem("dg-visited", "true");
+    };
+
+    helpButton.onclick = () => {
+        instructionsModal.classList.remove("hidden");
+    };
+
     const data = await fetchDiscography();
     tracks = data.track;
     albumData = data.album;
@@ -235,6 +255,13 @@ searchInput.addEventListener("keydown", (e) => {
 
     if (e.key === "Enter") {
        searchButton.click();
+    }
+});
+
+window.addEventListener("click", (e) => {
+    if (e.target === instructionsModal) {
+        instructionsModal.classList.add("hidden");
+        localStorage.setItem("dg-visited", "true");
     }
 });
 
