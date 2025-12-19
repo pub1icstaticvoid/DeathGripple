@@ -1,0 +1,524 @@
+{
+    "album": {
+        "Death Grips": "1",
+        "Exmilitary": "2",
+        "Live From Death Valley": "3",
+        "The Money Store": "4",
+        "No Love Deep Web": "5",
+        "Government Plates": "6",
+        "Fashion Week": "7",
+        "The Powers That B": "8",
+        "Interview 2016": "9",
+        "Bottomless Pit": "10",
+        "Steroids (Crouching Tiger Hidden Gabber Megamix)": "11",
+        "Year of the Snitch": "12",
+        "Gmail and the Restraining Orders": "13"
+    },
+
+    "track": {
+        "Death Grips (Next Grips)": {
+            "album": "Death Grips",
+            "num": "1"
+        },
+        "Face Melter (How to do impossible things)": {
+            "album": "Death Grips",
+            "num": "2"
+        },
+        "Full Moon (Death Classic)": {
+            "album": "Death Grips",
+            "num": "3"
+        },
+        "Known for it (Freak Grips)": {
+            "album":"Death Grips",
+            "num": "4"
+        },
+        "Takyon (Death Yon) (DG)": {
+            "album":"Death Grips",
+            "num":"5"
+        },
+        "Where's it at (Death Heated)": {
+            "album":"Death Grips",
+            "num":"6"
+        },
+        "Beware": {
+            "album": "Exmilitary",
+            "num": "1"
+        },
+        "Guillotine": {
+            "album": "Exmilitary",
+            "num": "2"
+        },
+        "Spread Eagle Cross the Block": {
+            "album": "Exmilitary",
+            "num":"3"
+        },
+        "Lord of the Game (ft. Mexican Girl)": {
+            "album":"Exmilitary",
+            "num":"4"
+        },
+        "Takyon (Death Yon) (Exmil)": {
+            "album":"Exmilitary",
+            "num":"5"
+        },
+        "Cut Throat (Instrumental)": {
+            "album":"Exmilitary",
+            "num":"6"
+        },
+        "Klink": {
+            "album":"Exmilitary",
+            "num":"7"
+        },
+        "Culture Shock": {
+            "album":"Exmilitary",
+            "num":"8"
+        },
+        "5D": {
+            "album":"Exmilitary",
+            "num":"9"
+        },
+        "Thru the Walls": {
+            "album":"Exmilitary",
+            "num":"10"
+        },
+        "Known for it": {
+            "album":"Exmilitary",
+            "num":"11"
+        },
+        "I Want It I Need It (Death Heated)": {
+            "album":"Exmilitary",
+            "num":"12"
+        },
+        "Blood Creepin": {
+            "album":"Exmilitary",
+            "num":"13"
+        },
+        "Poser Killer": {
+            "album":"Live From Death Valley",
+            "num":"1"
+        },
+        "Fyrd Up": {
+            "album":"Live From Death Valley",
+            "num":"2"
+        },
+        "Get Got": {
+            "album":"The Money Store",
+            "num":"1"
+        },
+        "The Fever (Aye Aye)": {
+            "album":"The Money Store",
+            "num":"2"
+        },
+        "Lost Boys": {
+            "album":"The Money Store",
+            "num":"3"
+        },
+        "Blackjack": {
+            "album":"The Money Store",
+            "num":"4"
+        },
+        "Hustle Bones": {
+            "album":"The Money Store",
+            "num":"5"
+        },
+        "I've Seen Footage": {
+            "album":"The Money Store",
+            "num":"6"
+        },
+        "Double Helix": {
+            "album":"The Money Store",
+            "num":"7"
+        },
+        "System Blower": {
+            "album":"The Money Store",
+            "num":"8"
+        },
+        "The Cage": {
+            "album":"The Money Store",
+            "num":"9"
+        },
+        "Punk Weight": {
+            "album":"The Money Store",
+            "num":"10"
+        },
+        "Fuck That": {
+            "album":"The Money Store",
+            "num":"11"
+        },
+        "Bitch Please": {
+            "album":"The Money Store",
+            "num":"12"
+        },
+        "Hacker": {
+            "album":"The Money Store",
+            "num":"13"
+        },
+        "Come Up and Get Me": {
+            "album": "No Love Deep Web",
+            "num":"1"
+        },
+        "Lil Boy": {
+            "album":"No Love Deep Web",
+            "num":"2"
+        },
+        "No Love": {
+            "album":"No Love Deep Web",
+            "num":"3"
+        },
+        "Black Dice": {
+            "album":"No Love Deep Web",
+            "num":"4"
+        },
+        "World of Dogs": {
+            "album":"No Love Deep Web",
+            "num":"5"
+        },
+        "Lock Your Doors": {
+            "album":"No Love Deep Web",
+            "num":"6"
+        },
+        "Whammy": {
+            "album":"No Love Deep Web",
+            "num":"7"
+        },
+        "Hunger Games": {
+            "album":"No Love Deep Web",
+            "num":"8"
+        },
+        "Deep Web":{
+            "album":"No Love Deep Web",
+            "num":"9"
+        },
+        "Stockton": {
+            "album":"No Love Deep Web",
+            "num":"10"
+        },
+        "Pop": {
+            "album":"No Love Deep Web",
+            "num":"11"
+        },
+        "Bass Rattle Stars Out the Sky": {
+            "album":"No Love Deep Web",
+            "num":"12"
+        },
+        "Artificial Death in the West": {
+            "album":"No Love Deep Web",
+            "num":"13"
+        },
+        "You Might Think He Loves You for Your Money but I Know What He Really Loves You for It's Your Brand New Leopard Skin Pillbox Hat": {
+            "album":"Government Plates",
+            "num":"1"
+        },
+        "Anne Bonny": {
+            "album":"Government Plates",
+            "num":"2"
+        },
+        "Two Heavens": {
+            "album":"Government Plates",
+            "num":"3"
+        },
+        "This Is Violence Now (Don't Get Me Wrong)": {
+            "album":"Government Plates",
+            "num":"4"
+        },
+        "Birds": {
+            "album":"Government Plates",
+            "num":"5"
+        },
+        "Feels Like a Wheel": {
+            "album":"Government Plates",
+            "num":"6"
+        },
+        "I'm Overflow": {
+            "album":"Government Plates",
+            "num":"7"
+        },
+        "Big House": {
+            "album":"Government Plates",
+            "num":"8"
+        },
+        "Government Plates": {
+            "album":"Government Plates",
+            "num":"9"
+        },
+        "Bootleg (Don't Need Your Help)": {
+            "album": "Government Plates",
+            "num":"10"
+        },
+        "Whatever I Want (Fuck Who's Watching)": {
+            "album": "Government Plates",
+            "num":"11"
+        },
+        "Runway J": {
+            "album": "Fashion Week",
+            "num":"1"
+        },
+        "Runway E": {
+            "album": "Fashion Week",
+            "num":"2"
+        },
+        "Runway N": {
+            "album": "Fashion Week",
+            "num": "3"
+        },
+        "Runway N (2)": {
+            "album": "Fashion Week",
+            "num":"4"
+        },
+        "Runway Y": {
+            "album": "Fashion Week",
+            "num" :"5"
+        },
+        "Runway D": {
+            "album": "Fashion Week",
+            "num":"6"
+        },
+        "Runway E (2)": {
+            "album": "Fashion Week",
+            "num":"7"
+        },
+        "Runway A": {
+            "album": "Fashion Week",
+            "num":"8"
+        },
+        "Runway T": {
+            "album": "Fashion Week",
+            "num": "9"
+        },
+        "Runway H": {
+            "album": "Fashion Week",
+            "num":"10"
+        },
+        "Runway W": {
+            "album": "Fashion Week",
+            "num":"11"
+        },
+        "Runway H (2)": {
+            "album":"Fashion Week",
+            "num":"12"
+        },
+        "Runway E (3)": {
+            "album":"Fashion Week",
+            "num":"13"
+        },
+        "Runway N (3)": {
+            "album":"Fashion Week",
+            "num":"14"
+        },
+        "Up My Sleeves": {
+            "album":"The Powers That B",
+            "num":"1"
+        },
+        "Billy Not Really": {
+            "album":"The Powers That B",
+            "num":"2"
+        },
+        "Black Quarterback": {
+            "album":"The Powers That B",
+            "num":"3"
+        },
+        "Say Hey Kid": {
+            "album":"The Powers That B",
+            "num":"4"
+        },
+        "Have a Sad Cum BB": {
+            "album":"The Powers That B",
+            "num":"5"
+        },
+        "Fuck Me Out": {
+            "album":"The Powers That B",
+            "num":"6"
+        },
+        "Voila" : {
+            "album":"The Powers That B",
+            "num":"7"
+        },
+        "Big Dipper":{
+            "album":"The Powers That B",
+            "num":"8"
+        },
+        "I Break Mirrors with My Face in the United States": {
+            "album":"The Powers That B",
+            "num":"9"
+        },
+        "Inanimate Sensation": {
+            "album":"The Powers That B",
+            "num":"10"
+        },
+        "Turned Off": {
+            "album":"The Powers That B",
+            "num":"11"
+        },
+        "Why a Bitch Gotta Lie": {
+            "album":"The Powers That B",
+            "num":"12"
+        },
+        "Pss Pss": {
+            "album":"The Powers That B",
+            "num":"13"
+        },
+        "The Powers That B": {
+            "album":"The Powers That B",
+            "num":"14"
+        },
+        "Beyond Alive": {
+            "album":"The Powers That B",
+            "num":"15"
+        },
+        "Centuries of Damn": {
+            "album":"The Powers That B",
+            "num":"16"
+        },
+        "On GP": {
+            "album":"The Powers That B",
+            "num":"17"
+        },
+        "Death Grips 2.0": {
+            "album":"The Powers That B",
+            "num":"18"
+        },
+        "Interview A":{
+            "album":"Interview 2016",
+            "num":"1"
+        },
+        "Interview B":{
+            "album":"Interview 2016",
+            "num":"2"
+        },
+        "Interview C":{
+            "album":"Interview 2016",
+            "num":"3"
+        },
+        "Interview D":{
+            "album":"Interview 2016",
+            "num":"4"
+        },
+        "Interview E":{
+            "album":"Interview 2016",
+            "num":"5"
+        },
+        "Interview F": {
+            "album":"Interview 2016",
+            "num":"6"
+        },
+        "Giving Bad People Good Ideas": {
+            "album":"Bottomless Pit",
+            "num":"1"
+        },
+        "Hot Head":{
+            "album":"Bottomless Pit",
+            "num":"2"
+        },
+        "Spikes":{
+            "album":"Bottomless Pit",
+            "num":"3"
+        },
+        "Warping":{
+            "album":"Bottomless Pit",
+            "num":"4"
+        },
+        "Eh":{
+            "album":"Bottomless Pit",
+            "num":"5"
+        },
+        "Bubbles Buried in This Jungle":{
+            "album":"Bottomless Pit",
+            "num":"6"
+        },
+        "Trash":{
+            "album":"Bottomless Pit",
+            "num":"7"
+        },
+        "Houdini":{
+            "album":"Bottomless Pit",
+            "num":"8"
+        },
+        "BB Poison":{
+            "album":"Bottomless Pit",
+            "num":"9"
+        },
+        "Three Bedrooms in a Good Neighborhood":{
+            "album":"Bottomless Pit",
+            "num":"10"
+        },
+        "Ring a Bell":{
+            "album":"Bottomless Pit",
+            "num":"11"
+        },
+        "80808":{
+            "album":"Bottomless Pit",
+            "num":"12"
+        },
+        "Bottomless Pit":{
+            "album":"Bottomless Pit",
+            "num":"13"
+        },
+        "Steroids (Crouching Tiger Hidden Gabber)":{
+            "album":"Steroids (Crouching Tiger Hidden Gabber Megamix)",
+            "num":"1"
+        },
+        "More Than the Fairy (Ft. Les Claypool)":{
+            "album":"Steroids (Crouching Tiger Hidden Gabber Megamix)",
+            "num":"2"
+        },
+        "electronic drum solo dub mix (single take)":{
+            "album":"Steroids (Crouching Tiger Hidden Gabber Megamix)",
+            "num":"3"
+        },
+        "Death Grips is Online":{
+            "album":"Year of the Snitch",
+            "num":"1"
+        },
+        "Flies":{
+            "album":"Year of the Snitch",
+            "num":"2"
+        },
+        "Black Paint":{
+            "album":"Year of the Snitch",
+            "num":"3"
+        },
+        "Linda's in Custody":{
+            "album":"Year of the Snitch",
+            "num":"4"
+        },
+        "The Horn Section":{
+            "album":"Year of the Snitch",
+            "num":"5"
+        },
+        "Hahaha":{
+            "album":"Year of the Snitch",
+            "num":"6"
+        },
+        "Shitshow":{
+            "album":"Year of the Snitch",
+            "num":"7"
+        },
+        "Streaky":{
+            "album":"Year of the Snitch",
+            "num":"8"
+        },
+        "Dilemma":{
+            "album":"Year of the Snitch",
+            "num":"9"
+        },
+        "Little Richard":{
+            "album":"Year of the Snitch",
+            "num":"10"
+        },
+        "The Fear":{
+            "album":"Year of the Snitch",
+            "num":"11"
+        },
+        "Outro":{
+            "album":"Year of the Snitch",
+            "num":"12"
+        },
+        "Disappointed":{
+            "album":"Year of the Snitch",
+            "num":"13"
+        },
+        "Gmail and the Restraining Orders":{
+            "album":"Gmail and the Restraining Orders",
+            "num":"1"
+        }
+    }
+}
