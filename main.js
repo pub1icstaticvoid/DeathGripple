@@ -7,6 +7,7 @@ let guessEmojis = [];
 let gameOver = false;
 let guessCount = 0;
 const MAX_GUESSES = 6;
+const guessDisplay = document.getElementById("guess-counter");
 
 function setDailySong(trackData) {
     const titles = Object.keys(trackData);
@@ -114,7 +115,6 @@ searchButton.addEventListener("click", () => {
         submitGuess(actualTrackName);
     }
     else {
-        triggerGlitchEffect();
         alert("Track not found in discography.");
     }
 });
@@ -122,6 +122,8 @@ searchButton.addEventListener("click", () => {
 function submitGuess(trackName) {
     if (gameOver) return;
     guessCount++;
+
+    guessDisplay.textContent = `Guesses: ${guessCount} / ${MAX_GUESSES}`;
 
     const songInfo = tracks[trackName];
     const targetInfo = dailySong;

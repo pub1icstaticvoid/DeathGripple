@@ -49,6 +49,13 @@ main {
     border: 2px solid #fff;
     cursor: pointer;
 }
+#guess-counter {
+    text-align: center;
+    margin-top: 10px;
+    font-family: inherit;
+    font-weight: lighter;
+    color:#888;
+}
 #track-dropdown {
     max-height: 200px;
     overflow-y: auto;
