@@ -96,6 +96,7 @@ main {
     font-weight: bold;
     border: 2px solid #fff;
     cursor: pointer;
+    font-family: "Courier New", Courier, monospace;
 }
 #search-button:hover {
     background: #000;
@@ -216,6 +217,20 @@ main {
 .modal-hidden {
     display: none;
 }
+.modal-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #fff;
+    color: #000;
+    border: 2px solid #fff;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+}
+.modal-button:hover {
+    background: #000;
+    color: #fff;
+}
 .art-placeholder {
     width: 200px; height: 200px;
     background: #333;
@@ -269,5 +284,19 @@ main {
     transition: color 0.2 ease;
 }
 #close-x:hover {
+    color: #fff;
+}
+#main-play-again {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #fff;
+    color: #000;
+    border: 2px solid #fff;
+    cursor: pointer;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
+#main-play-again:hover {
+    background: #000;
     color: #fff;
 }

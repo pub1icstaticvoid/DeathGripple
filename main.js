@@ -21,14 +21,7 @@ document.getElementById("daily-mode").onclick = () => {
     if (!endlessMode) return;
     endlessMode = false;
 
-    gameOver = false;
-    guessCount = 0;
-    guessEmojis = [];
-
-    searchInput.disabled = false;
-    searchButton.disabled = false;
-    searchInput.placeholder = "Enter song title...";
-    document.getElementById("win-modal").classList.add("hidden");
+    resetInternalState();
 
     document.getElementById("daily-mode").classList.add("active");
     document.getElementById("endless-mode").classList.remove("active");
@@ -42,14 +35,7 @@ document.getElementById("endless-mode").onclick = () => {
     if (endlessMode) return;
     endlessMode = true;
 
-    gameOver = false;
-    guessCount = 0;
-    guessEmojis = [];
-
-    searchInput.disabled = false;
-    searchButton.disabled = false;
-    searchInput.placeholder = "Enter song title...";
-    document.getElementById("win-modal").classList.add("hidden");
+    resetInternalState();
 
     document.getElementById("daily-mode").classList.remove("active");
     document.getElementById("endless-mode").classList.add("active");
@@ -61,6 +47,21 @@ document.getElementById("endless-mode").onclick = () => {
         startEndlessMode();
     }
 };
+
+function resetInternalState() {
+    gameOver = false;
+    guessCount = 0;
+    guessEmojis = [];
+    searchInput.disabled = false;
+    searchButton.disabled = false;
+    searchInput.placeholder = "Enter song title...";
+
+    const container = document.getElementById("guesses-container");
+    const existingRows = container.querySelectorAll(".guess-row");
+    existingRows.forEach(row => row.remove());
+
+    document.getElementById("win-modal").classList.add("hidden");
+}
 
 function startEndlessMode() {
     localStorage.removeItem("dg-endless-state");
@@ -77,6 +78,7 @@ function startEndlessMode() {
     searchInput.placeholder = "Enter song title...";
 
     document.getElementById("win-modal").classList.add("hidden");
+    document.getElementById("main-play-again").classList.add("hidden");
 
     const container = document.getElementById("guesses-container");
     const existingRows = container.querySelectorAll(".guess-row");
@@ -163,6 +165,14 @@ function loadGameState() {
     saved.guesses.forEach(guessTitle => {
         submitGuess(guessTitle);
     });
+
+    if (saved.gameOver && endlessMode) {
+        document.getElementById("main-play-again").classList.remove("hidden");
+
+        gameOver = true;
+        searchInput.disabled = true;
+        searchButton.disabled = true;
+    }    
 }
 
 async function init() {
@@ -298,8 +308,8 @@ function submitGuess(trackName) {
     if (trackDist === 0) trackClass = "correct";
     else if (trackDist <= 2) trackClass = "near";
     let trackHint = "";
-    if (guessNum < targetNum) trackHint = " ↓";
-    else if (guessNum > targetNum) trackHint = " ↑";
+    if (guessNum < targetNum) trackHint = " ↑";
+    else if (guessNum > targetNum) trackHint = " ↓";
 
     const isCorrectAlbum = songInfo.album === targetInfo.album;
     const isCorrectTitle = trackName === targetInfo.title;
@@ -397,16 +407,23 @@ function showEndScreen(isWin) {
     }
 
     const playAgainButton = document.getElementById("play-again-button");
+    const mainPlayAgainButton = document.getElementById("main-play-again");
     if (endlessMode) {
         playAgainButton.classList.remove("hidden");
+        mainPlayAgainButton.classList.remove("hidden");
     } else {
         playAgainButton.classList.add("hidden");
+        mainPlayAgainButton.classList.add("hidden");
     }
 
     document.getElementById("win-modal").classList.remove("hidden");
 }
 
 document.getElementById("play-again-button").onclick = () => {
+    startEndlessMode();
+};
+
+document.getElementById("main-play-again").onclick = () => {
     startEndlessMode();
 };
 
