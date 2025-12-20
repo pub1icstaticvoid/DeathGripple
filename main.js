@@ -56,6 +56,8 @@ function resetInternalState() {
     searchButton.disabled = false;
     searchInput.placeholder = "Enter song title...";
 
+    guessDisplay.textContent = `Guesses: 0 / ${MAX_GUESSES}`;
+
     const container = document.getElementById("guesses-container");
     const existingRows = container.querySelectorAll(".guess-row");
     existingRows.forEach(row => row.remove());
