@@ -28,6 +28,10 @@
     </div>
     <header>
         <h1>Death Gripple</h1>
+        <nav class="mode-select">
+        <button id="daily-mode" class="active">DAILY</button>
+        <button id="endless-mode">ENDLESS</button>
+    </nav>
     </header>
     <main>
         <p>Guess the daily Death Grips song.</p>
@@ -54,6 +58,9 @@
         <div id="win-modal" class="modal hidden">
             <div class="modal-content">
                 <h2 id="end-message">Congratulations! You guessed the song!</h2>
+                <div id ="streak-display">
+                    Current Streak: <span id="streak-count">0</span>
+                </div>
                 <div id="album-art-container">
                     <div class="art-placeholder" id="fallback-art">DG</div>
                     <img id="album-art" src="" alt="Album art" class="hidden">
@@ -61,6 +68,7 @@
                 <h3 id="correct-song-title"></h3>
                 <p id="correct-album-name"></p>
                 <button id="share-button">SHARE</button>
+                <button id="play-again-button" class="hidden">PLAY AGAIN</button>
                 <button id="close-modal">CLOSE</button>
             </div>
         </div>

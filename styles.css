@@ -52,6 +52,25 @@ main {
     max-width: 500px;
     padding: 0 20px;
 }
+.mode-select {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+.mode-select button {
+    background: transparent;
+    color: #555;
+    border: 1px solid #555;
+    cursor: pointer;
+    font-family: 'Courier New', Courier, monospace;
+}
+.mode-select button.active {
+    color: #fff;
+    border-color: #fff;
+    background-color: #222;
+    box-shadow: 0 0 10px #fff;
+}
 .search-container {
     width: 100%;
     max-width: 500px;
@@ -211,6 +230,19 @@ main {
     height: 200px;
     object-fit: cover;
     border: 2px solid #fff;
+}
+#streak-display {
+    font-family: 'Courier New', Courier, monospace;
+    margin: 10px 0;
+    font-weight: bold;
+    color: #fff;
+    text-transform: uppercase;
+    display: none;
+}
+#streak-count {
+    font-size: 1.1rem;
+    display: inline;
+    margin-top: 5px;
 }
 .share-button {
     background: #6aaa64;

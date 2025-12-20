@@ -1,5 +1,9 @@
 import { fetchDiscography } from "./api.js";
 
+let endlessMode = false;
+let streak = localStorage.getItem("dg-streak") || 0;
+document.getElementById("streak-count").textContent = streak;
+
 let tracks = {};
 let albumData = {};
 let dailySong = null;
@@ -12,6 +16,86 @@ const guessDisplay = document.getElementById("guess-counter");
 const instructionsModal = document.getElementById("instructions-modal");
 const helpButton = document.getElementById("help-button");
 const closeInstructions = document.getElementById("close-instructions");
+
+document.getElementById("daily-mode").onclick = () => {
+    if (!endlessMode) return;
+    endlessMode = false;
+
+    gameOver = false;
+    guessCount = 0;
+    guessEmojis = [];
+
+    searchInput.disabled = false;
+    searchButton.disabled = false;
+    searchInput.placeholder = "Enter song title...";
+    document.getElementById("win-modal").classList.add("hidden");
+
+    document.getElementById("daily-mode").classList.add("active");
+    document.getElementById("endless-mode").classList.remove("active");
+    document.getElementById("play-again-button").classList.add("hidden");
+
+    setDailySong(tracks);
+    loadGameState();
+};
+
+document.getElementById("endless-mode").onclick = () => {
+    if (endlessMode) return;
+    endlessMode = true;
+
+    gameOver = false;
+    guessCount = 0;
+    guessEmojis = [];
+
+    searchInput.disabled = false;
+    searchButton.disabled = false;
+    searchInput.placeholder = "Enter song title...";
+    document.getElementById("win-modal").classList.add("hidden");
+
+    document.getElementById("daily-mode").classList.remove("active");
+    document.getElementById("endless-mode").classList.add("active");
+
+    const saved = localStorage.getItem("dg-endless-state");
+    if (saved) {
+        loadGameState();
+    } else {
+        startEndlessMode();
+    }
+};
+
+function startEndlessMode() {
+    localStorage.removeItem("dg-endless-state");
+
+    gameOver = false;
+    guessCount = 0;
+    guessEmojis = [];
+
+    guessDisplay.textContent = `Guesses: 0 / ${MAX_GUESSES}`;
+
+    searchInput.disabled = false;
+    searchButton.disabled = false;
+    searchInput.value = "";
+    searchInput.placeholder = "Enter song title...";
+
+    document.getElementById("win-modal").classList.add("hidden");
+
+    const container = document.getElementById("guesses-container");
+    const existingRows = container.querySelectorAll(".guess-row");
+    existingRows.forEach(row => row.remove());
+
+    const titles = Object.keys(tracks);
+    const randomIndex = Math.floor(Math.random() * titles.length);
+    const targetTitle = titles[randomIndex];
+
+    dailySong = {
+        title: targetTitle,
+        ...tracks[targetTitle]
+    };
+
+    document.getElementById("play-again-button").classList.remove("hidden");
+    document.getElementById("streak-display").style.display = "block";
+
+    saveGameState();
+};
 
 function setDailySong(trackData) {
     const titles = Object.keys(trackData);
@@ -35,6 +119,50 @@ function setDailySong(trackData) {
     };
 
     console.log("Daily song selected.");
+}
+
+function saveGameState() {
+    const state = {
+        targetTitle: dailySong.title,
+        guesses: Array.from(document.querySelectorAll(".guess-row")).map(row => {
+            return row.querySelector(".cell").textContent.trim();
+        }).reverse(),
+        gameOver: gameOver,
+        date: new Date().toDateString()
+    };
+
+    const key = endlessMode ? "dg-endless-state" : "dg-daily-state";
+    localStorage.setItem(key, JSON.stringify(state));
+}
+
+function loadGameState() {
+    const key = endlessMode ? "dg-endless-state" : "dg-daily-state";
+    const saved = JSON.parse(localStorage.getItem(key));
+
+    if (!saved) return;
+
+    if (!endlessMode && saved.date !== new Date().toDateString()) {
+        localStorage.removeItem(key);
+        return;
+    }
+
+    if (endlessMode) {
+        dailySong = {
+            title: saved.targetTitle,
+            ...tracks[saved.targetTitle]
+        };
+    }
+
+    const container = document.getElementById("guesses-container");
+    const existingRows = container.querySelectorAll(".guess-row");
+    existingRows.forEach(row => row.remove());
+    guessCount = 0;
+    guessEmojis = [];
+    gameOver = false;
+
+    saved.guesses.forEach(guessTitle => {
+        submitGuess(guessTitle);
+    });
 }
 
 async function init() {
@@ -65,6 +193,8 @@ async function init() {
     setupDropDown(alphabetizedTrackNames);
 
     setDailySong(tracks);
+
+    loadGameState();
 }
 
 function setupDropDown(trackNames) {
@@ -207,17 +337,47 @@ function submitGuess(trackName) {
     else if (guessCount >= MAX_GUESSES) {
         showEndScreen(false);
     }
+
+    if (trackName === searchInput.value.trim() || !searchInput.value) {
+        saveGameState();
+    }
 }
+
+function updateStreak(isWin) {
+    if (!endlessMode) return;
+
+    if (localStorage.getItem("last-win-title") === dailySong.title) return;
+
+    if (isWin) {
+        streak = parseInt(streak) + 1;
+        localStorage.setItem("last-win-title", dailySong.title);
+    }
+    else {
+        streak = 0;
+        localStorage.removeItem("last-win-title");
+    }
+
+    localStorage.setItem("dg-streak", streak);
+
+    const streakElement = document.getElementById("streak-count");
+    if (streakElement) {
+        streakElement.textContent = streak;
+    }
+};
 
 function showEndScreen(isWin) {
     gameOver = true;
+    updateStreak(isWin);
 
     searchInput.disabled = true;
     searchButton.disabled = true;
     searchInput.placeholder = isWin ? "You won!" : "Game over";
 
-    const message = isWin ? "Congratulations! You guessed the song!" : "Out of guesses! The correct song was:";
+    const message = isWin
+        ? "Congratulations! You guessed the song!"
+        : "Out of guesses! The correct song was:";
     document.getElementById("end-message").textContent = message;
+    
 
     const albumArtImage = document.getElementById("album-art");
     const fallBackArt = document.getElementById("fallback-art");
@@ -228,8 +388,27 @@ function showEndScreen(isWin) {
 
     document.getElementById("correct-song-title").textContent = dailySong.title;
     document.getElementById("correct-album-name").textContent = dailySong.album;
+
+    const streakDiv = document.getElementById("streak-display");
+    if (endlessMode) {
+        streakDiv.style.display = "block";
+    } else {
+        streakDiv.style.display = "none";
+    }
+
+    const playAgainButton = document.getElementById("play-again-button");
+    if (endlessMode) {
+        playAgainButton.classList.remove("hidden");
+    } else {
+        playAgainButton.classList.add("hidden");
+    }
+
     document.getElementById("win-modal").classList.remove("hidden");
 }
+
+document.getElementById("play-again-button").onclick = () => {
+    startEndlessMode();
+};
 
 document.getElementById("close-modal").onclick = () => {
     document.getElementById("win-modal").classList.add("hidden");
@@ -245,8 +424,15 @@ document.getElementById("share-button").onclick = () => {
     const diffTime = Math.abs(today - startDate);
     const gameNumber = Math.floor(diffTime / 86400000) + 1;
 
-    const text = `Death Gripple #${gameNumber}\n${guessEmojis.join("\n")}`;
-    navigator.clipboard.writeText(text);
+    let shareHeader = "";
+    if (endlessMode) {
+        shareHeader = `Death Gripple Endless Mode | Streak: ${streak}\n`;
+    } else {
+        shareHeader = `Death Gripple #${gameNumber} | Guess: ${guessCount}/${MAX_GUESSES}\n`;
+    }
+
+    const fullText = shareHeader + guessEmojis.join("\n");
+    navigator.clipboard.writeText(fullText);
     alert("Results copied to clipboard!");
 };
 
