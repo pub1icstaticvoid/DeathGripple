@@ -2,7 +2,9 @@ import { fetchDiscography } from "./api.js";
 
 let endlessMode = false;
 let streak = localStorage.getItem("dg-streak") || 0;
+let highestStreak = localStorage.getItem("dg-highest-streak") || 0;
 document.getElementById("streak-count").textContent = streak;
+document.getElementById("highest-streak-count").textContent = highestStreak;
 
 let tracks = {};
 let albumData = {};
@@ -63,6 +65,7 @@ function resetInternalState() {
     existingRows.forEach(row => row.remove());
 
     document.getElementById("win-modal").classList.add("hidden");
+    document.getElementById("main-play-again").classList.add("hidden");
 }
 
 function startEndlessMode() {
@@ -363,6 +366,12 @@ function updateStreak(isWin) {
     if (isWin) {
         streak = parseInt(streak) + 1;
         localStorage.setItem("last-win-title", dailySong.title);
+
+        highestStreak = parseInt(highestStreak);
+        if (streak > highestStreak) {
+            highestStreak = streak;
+            localStorage.setItem("dg-highest-streak", highestStreak);
+        }
     }
     else {
         streak = 0;
@@ -375,11 +384,21 @@ function updateStreak(isWin) {
     if (streakElement) {
         streakElement.textContent = streak;
     }
+
+    const highestElement = document.getElementById("highest-streak-count");
+    if (highestElement) {
+        highestElement.textContent = highestStreak;
+    }
 };
 
 function showEndScreen(isWin) {
     gameOver = true;
     updateStreak(isWin);
+
+    const modal = document.getElementById("win-modal");
+    const modalContent = modal.querySelector(".modal-content");
+    modalContent.classList.toggle("win", isWin);
+    modalContent.classList.toggle("lose", !isWin);
 
     searchInput.disabled = true;
     searchButton.disabled = true;
@@ -406,6 +425,13 @@ function showEndScreen(isWin) {
         streakDiv.style.display = "block";
     } else {
         streakDiv.style.display = "none";
+    }
+
+    const highestStreakDiv = document.getElementById("highest-streak-display");
+    if (endlessMode) {
+        highestStreakDiv.style.display = "block";
+    } else {
+        highestStreakDiv.style.display = "none";
     }
 
     const playAgainButton = document.getElementById("play-again-button");
@@ -445,7 +471,7 @@ document.getElementById("share-button").onclick = () => {
 
     let shareHeader = "";
     if (endlessMode) {
-        shareHeader = `Death Gripple Endless Mode | Streak: ${streak}\n`;
+        shareHeader = `Death Gripple Endless Mode | Streak: ${streak} (Best: ${highestStreak})\n`;
     } else {
         shareHeader = `Death Gripple #${gameNumber} | Guess: ${guessCount}/${MAX_GUESSES}\n`;
     }
