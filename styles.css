@@ -49,7 +49,7 @@ main {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    max-width: 500px;
+    max-width: 800px;
     padding: 0 20px;
 }
 .mode-select {
@@ -155,6 +155,26 @@ main {
     gap: 10px;
     margin-bottom: 10px;
 }
+#guess-album-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#guess-album-art {
+    height: 50px;
+    width: 50px;
+    border: 1px solid #fff;
+    display: block;
+}
+#guess-art-hint {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 7px;
+}
+#guess-album-name {
+    font-size: 8px;
+}
 .header-cell {
     flex: 1;
     text-align: center;
@@ -168,12 +188,12 @@ main {
 }
 .cell {
     flex: 1;
-    height: 70px;
+    height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
     border: 2px solid #333;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     text-align: center;
     padding: 5px;
     background-color: #000;
@@ -193,6 +213,15 @@ main {
     background-color: #c9b458;
     border-color: #c9b458;
     color: #000;
+}
+.cell.correct #guess-album-art {
+    border: 1px solid #fff;
+}
+.cell.cell.incorrect #guess-album-art {
+    border: 1px solid #fff;
+}
+.cell.near #guess-album-art {
+    border: 1px solid #000;
 }
 /* Popup Win Modal */
 .hidden {
