@@ -33,7 +33,9 @@ export function loadGameState(endlessMode) {
     return saved;
 }
 
-export function updateStreakData(isWin, isGameOver) {
+export function updateStreakData(isWin, isGameOver, endlessMode) {
+    if (!endlessMode) return;
+    
     let streak = localStorage.getItem("dg-streak") || 0;
     let highestStreak = localStorage.getItem("dg-highest-streak") || 0;
 

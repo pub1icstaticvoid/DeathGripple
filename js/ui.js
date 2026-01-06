@@ -41,8 +41,13 @@ export function showEndScreen(isWin, dailySong, endlessMode) {
     const streakDisplay = document.getElementById("streak-display");
     const highestStreak = document.getElementById("highest-streak-display");
     
-    if (streakDisplay) streakDisplay.style.display = "block";
-    if (highestStreak) highestStreak.style.display = "block";
+    streakDisplay.style.display = "none";
+    highestStreak.style.display = "none";
+
+    if (endlessMode) {
+        streakDisplay.style.display = "block";
+        highestStreak.style.display = "block";
+    }
 
     const playAgainButton = document.getElementById("play-again-button");
     const mainPlayAgainButton = document.getElementById("main-play-again");

@@ -128,7 +128,7 @@ function submitGuess(name) {
 
     if (result.isCorrectTitle || guessCount >= Game.MAX_GUESSES) {
         gameOver = true;
-        const stats = Storage.updateStreakData(result.isCorrectTitle, gameOver);
+        const stats = Storage.updateStreakData(result.isCorrectTitle, gameOver, endlessMode);
         UI.updateStreakDisplay(stats.streak, stats.highestStreak);
         UI.showEndScreen(result.isCorrectTitle, dailySong, endlessMode);
     }
