@@ -34,20 +34,20 @@ export function loadGameState(endlessMode) {
 }
 
 export function updateStreakData(isWin, isGameOver, endlessMode) {
-    if (!endlessMode) return;
-    
     let streak = localStorage.getItem("dg-streak") || 0;
     let highestStreak = localStorage.getItem("dg-highest-streak") || 0;
 
-    if (isWin) {
-        streak++;
-        if (streak > highestStreak) {
-            highestStreak = streak;
-            localStorage.setItem("dg-highest-streak", highestStreak);
+    if (endlessMode) {
+        if (isWin) {
+            streak++;
+            if (streak > highestStreak) {
+                highestStreak = streak;
+                localStorage.setItem("dg-highest-streak", highestStreak);
+            }
         }
-    }
-    else if (isGameOver) {
-        streak = 0;
+        else if (isGameOver) {
+            streak = 0;
+        }
     }
 
     localStorage.setItem("dg-streak", streak);
